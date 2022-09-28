@@ -4,10 +4,11 @@ import "./App.css";
 import Home from "./components/Home";
 const App = () => {
   return (
-    <div className="container">
-      <Navbar />
-      <Home />
-    </div>
+    <>
+      <div className="container">
+        <Home />
+      </div>
+    </>
   );
 };
 

@@ -4,6 +4,16 @@
   padding: 0;
 }
 
+@media only screen and (min-width: 1200px) {
+  .container,
+  .container-lg,
+  .container-md,
+  .container-sm,
+  .container-xl {
+    max-width: 1080px;
+  }
+}
+
 body {
   background-color: #deeded;
 }
@@ -42,8 +52,8 @@ label {
   user-select: none;
   position: relative;
 }
-.form-check label{
-bottom: 0;
+.form-check label {
+  bottom: 0;
 }
 .form-control,
 .form-control span {
@@ -57,38 +67,47 @@ code {
     monospace;
 }
 .rock {
-  background-color: rgb(148, 81, 81);
+  background-color: #c5aea8;
 }
 .ghost {
-  background-color: rgb(247, 247, 247);
+  background-color: #d7c2d7;
 }
 .electric {
-  background-color: rgb(255, 255, 161);
+  background-color: #e2e2a0;
 }
 .bug {
-  background-color: #f6d6a7;
+  background-color: #c1e0c8;
 }
 .poison {
-  background-color: #e0a7f6;
+  background-color: #cfb7ed;
 }
 .normal {
-  background-color: #f4f4f4;
+  background-color: #ddcbd0;
 }
 .fairy {
-  background-color: rgba(255, 192, 203, 0.863);
+  background-color: #e4c0cf;
 }
 .fire {
-  background-color: #fbe3df;
+  background: linear-gradient(to bottom, #dbd2a9, #edc2c4);
 }
 .grass {
-  background-color: #e2f9e1;
+  background: linear-gradient(to bottom, #c0d4c8, #cfb7ed);
 }
 .water {
-  background-color: #e0f1fd;
+  background-color: #cbd5ed;
+}
+.flying {
+  background: linear-gradient(to top, #ddcbd0, #b2d2e8);
+}
+.ice {
+  background: linear-gradient(to bottom, #c1e0c8, #b2d2e8);
+}
+.steel {
+  background: #c2d4ce;
 }
 
 .app-container {
-  padding: 3rem 0;
+  padding: 2rem 0;
   display: grid;
   place-content: center;
 }
@@ -107,9 +126,9 @@ code {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 1.5rem 0;
+  padding: 1rem 0;
   margin: 0.3rem;
-  border: 1px solid #efefef;
+  border: 2px dotted black;
   border-radius: 0.2rem;
   min-width: 160px;
   text-align: center;
@@ -120,7 +139,6 @@ h3 {
 }
 .thumb-container .number {
   border-radius: 1rem;
-  padding: 0.2rem 0.4rem;
 }
 .thumb-container img {
   width: 120px;
@@ -185,6 +203,6 @@ h3 {
   .search-form form {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 1.5rem;
   }
 }

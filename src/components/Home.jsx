@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import PokemonThumb from "./PokemonThumb";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
+import Modal from "react-bootstrap/Modal";
+import Navbar from "./Navbar";
 const Home = () => {
   const [allPokemons, setAllPokemons] = useState([]);
   const [loadMore, setLoadMore] = useState(
@@ -16,11 +18,19 @@ const Home = () => {
     { name: "Ground" },
     { name: "Rock" },
   ];
-  const genderData = [{ name: "Male" }, { name: "Female" }];
+  const genderData = [
+    { name: "Male" },
+    { name: "Female" },
+    { name: "Genderless" },
+  ];
   const [users, setUsers] = useState([]);
   const [gender, setGender] = useState([]);
   const [isChecked, setIsChecked] = useState(false);
   const [isGenChecked, setIsGenChecked] = useState(false);
+  const [MalePok, setMalePok] = useState([]);
+  const [FemalePok, setFemalePok] = useState([]);
+  const [genderLessPok, setgenderLessPok] = useState([]);
+  const [show, setShow] = useState(false);
   useEffect(() => {
     setUsers(userData);
     setGender(genderData);
@@ -63,98 +73,131 @@ const Home = () => {
     createPokemonObject(data.results);
   };
 
+  const fetchGender = () => {
+    fetch("https://pokeapi.co/api/v2/gender/1")
+      .then((r) => r.json())
+      .then((data) => {
+        setMalePok(data);
+      });
+    fetch("https://pokeapi.co/api/v2/gender/2")
+      .then((r) => r.json())
+      .then((data) => {
+        setFemalePok(data);
+      });
+    fetch("https://pokeapi.co/api/v2/gender/3")
+      .then((r) => r.json())
+      .then((data) => {
+        setgenderLessPok(data);
+      });
+  };
+
   useEffect(() => {
     getAllPokemons();
+    fetchGender();
   }, []);
 
-  console.log(gender[0]?.isChecked);
   return (
-    <div className="app-container">
-      <div className="search-form">
-        <Form>
-          <InputGroup className="mb-3">
-            <label>Search by</label>
-            <Form.Control
-              placeholder="Name or Number"
-              aria-label="Small"
-              aria-describedby="inputGroup-sizing-sm"
-              value={inputName}
-              className="inputValues"
-              onChange={(e) => setinputName(e.target.value)}
-            />
-            <InputGroup.Text id="basic-addon"></InputGroup.Text>
-          </InputGroup>
-          <InputGroup className="mb-3">
-            <label>Type</label>
-            <div onClick={() => setIsChecked(!isChecked)} className="form-control">
-              <span >
-                Normal + 5 More
-              </span>
-              {isChecked &&
-                users.map((user, index) => (
-                  <div className="form-check" key={index}>
-                    <input
-                      type="checkbox"
-                      className="form-check-input"
-                      name={user.name}
-                      checked={user?.isChecked || false}
-                      onChange={handleChange}
-                    />
-                    <label className="form-check-label ms-2">{user.name}</label>
-                  </div>
-                ))}
-            </div>
-          </InputGroup>
-          <InputGroup className="mb-3">
-            <label>Gender</label>
-            <div onClick={() => setIsGenChecked(!isGenChecked)} className="form-control">
-              <span >
-                Male +2 more
-              </span>
-              {isGenChecked &&
-                gender.map((gen, index) => (
-                  <div className="form-check" key={index}>
-                    <input
-                      type="checkbox"
-                      className="form-check-input"
-                      name={gen.name}
-                      checked={gen?.isChecked || false}
-                      onChange={handlegenderChange}
-                    />
-                    <label className="form-check-label ms-2">{gen.name}</label>
-                  </div>
-                ))}
-            </div>
-          </InputGroup>
-        </Form>
-      </div>
-      <div className="pokemon-container">
-        <div className="all-container">
-          {allPokemons.length > 0 &&
-            allPokemons
-              .filter((data) => {
-                console.log(data);
-                if (data.name.toLowerCase().includes(inputName.toLowerCase())) {
-                  return data;
-                }
-              })
-              .map((pokemonStats, index) => {
-                return (
-                  <PokemonThumb
-                    key={index}
-                    id={pokemonStats.id}
-                    image={pokemonStats.sprites.other.dream_world.front_default}
-                    name={pokemonStats.name}
-                    type={pokemonStats.types[0].type.name}
-                  />
-                );
-              })}
+    <>
+      <Navbar />
+      <div className="app-container">
+        <div className="search-form">
+          <Form>
+            <InputGroup className="mb-3">
+              <label>Search by</label>
+              <Form.Control
+                placeholder="Name or Number"
+                aria-label="Small"
+                aria-describedby="inputGroup-sizing-sm"
+                value={inputName}
+                className="inputValues"
+                onChange={(e) => setinputName(e.target.value)}
+              />
+              <InputGroup.Text id="basic-addon">
+                <span class="material-symbols-outlined">search</span>
+              </InputGroup.Text>
+            </InputGroup>
+            <InputGroup className="mb-3">
+              <label>Type</label>
+              <div
+                onClick={() => setIsChecked(!isChecked)}
+                className="form-control"
+              >
+                <span>Normal + 5 More</span>
+                {isChecked &&
+                  users.map((user, index) => (
+                    <div className="form-check" key={index}>
+                      <input
+                        type="checkbox"
+                        className="form-check-input"
+                        name={user.name}
+                        checked={user?.isChecked || false}
+                        onChange={handleChange}
+                      />
+                      <label className="form-check-label ms-2">
+                        {user.name}
+                      </label>
+                    </div>
+                  ))}
+              </div>
+            </InputGroup>
+            <InputGroup className="mb-3">
+              <label>Gender</label>
+              <div
+                onClick={() => setIsGenChecked(!isGenChecked)}
+                className="form-control"
+              >
+                <span>Male +2 more</span>
+                {isGenChecked &&
+                  gender.map((gen, index) => (
+                    <div className="form-check" key={index}>
+                      <input
+                        type="checkbox"
+                        className="form-check-input"
+                        name={gen.name}
+                        checked={gen?.isChecked || false}
+                        onChange={handlegenderChange}
+                      />
+                      <label className="form-check-label ms-2">
+                        {gen.name}
+                      </label>
+                    </div>
+                  ))}
+              </div>
+            </InputGroup>
+          </Form>
         </div>
-        <button className="load-more" onClick={getAllPokemons}>
-          Load more
-        </button>
+        <div className="pokemon-container">
+          <div className="all-container">
+            {allPokemons.length > 0 &&
+              allPokemons
+                .filter((data) => {
+                  if (
+                    data.name.toLowerCase().includes(inputName.toLowerCase())
+                  ) {
+                    return data;
+                  }
+                })
+                .map((pokemonStats, index) => {
+                  return (
+                    <PokemonThumb
+                      key={index}
+                      id={pokemonStats.id}
+                      image={
+                        pokemonStats.sprites.other.dream_world.front_default
+                      }
+                      name={pokemonStats.name}
+                      type={pokemonStats.types[0].type.name}
+                      onClick={() => setShow(true)}
+                    />
+                  );
+                })}
+          </div>
+          <button className="load-more" onClick={getAllPokemons}>
+            Load more
+          </button>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
