@@ -193,7 +193,6 @@ h3 {
   gap: 2rem;
   align-items: center;
 }
-
 .pokemon-stats {
   margin-top: 2rem;
   display: grid;
@@ -210,11 +209,9 @@ h3 {
 .pokemon-states p {
   font-weight: bold;
 }
-
 .modal-body {
   background-color: #deeded;
 }
-
 .modal-header {
   background-color: #deeded;
 }
