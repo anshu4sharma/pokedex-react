@@ -1,17 +1,19 @@
 import React, { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import Badge from "react-bootstrap/Badge";
-
-const PokemonThumb = ({ id, image, name, type, _callback , data}) => {
+const PokemonCard = ({ id, image, name, type, _callback, data }) => {
   const [show, setShow] = useState(false);
-
   const style = type + " thumb-container";
   const modalStyle = type + " modal-container-img";
-  console.log(type);
   return (
     <>
       <Modal show={show} fullscreen={true} onHide={() => setShow(false)}>
-        <Modal.Header closeButton></Modal.Header>
+        <Modal.Header closeButton>
+          <div className="pokemon-detail-header">
+            <h2 style={{ textTransform: "uppercase" }}>{name}</h2>
+            <h3>#00{id}</h3>
+          </div>
+        </Modal.Header>
         <Modal.Body>
           <div className="container pokemon">
             <div onClick={() => setShow(false)} className={modalStyle}>
@@ -24,7 +26,8 @@ const PokemonThumb = ({ id, image, name, type, _callback , data}) => {
                 <div className="vr"></div>
                 <span
                   onClick={() => setShow(false)}
-                  class="material-symbols-outlined">
+                  class="material-symbols-outlined"
+                >
                   cancel
                 </span>
               </div>
@@ -34,8 +37,7 @@ const PokemonThumb = ({ id, image, name, type, _callback , data}) => {
                 hot fire, the red flame at the tip of its tail burns more
                 intensely. If CHARIZARD be­comes furious, the flame at the tip
                 of its tail flares up in a whitish-blue color. Breathing
-                intense, hot flames, it can melt almost any­ thing. Its breath
-                inflicts terrible pain on enemies . . . read more
+                intense, hot flames, it can melt almost any­ thing.
               </span>
             </div>
           </div>
@@ -60,49 +62,52 @@ const PokemonThumb = ({ id, image, name, type, _callback , data}) => {
           <div className="container pokemon-states">
             <div>
               <p>Abilities</p>
-              <span>Blaze, Solar-Power</span>
+              <div>
+                {data.abilities[0]?.ability?.name}
+                {data.abilities[1]?.ability?.name}
+              </div>
             </div>
             <div>
               <p>Types</p>
-              <span>
+              <div>
                 <Badge bg="danger" text="light">
-                  Warning
+                  {data.types[0].type.name}
                 </Badge>
-              </span>
+              </div>
 
-              <span>
+              <div>
                 <Badge bg="primary" text="light">
-                  Warning
+                  {data.types[1]?.type?.name}
                 </Badge>
-              </span>
+              </div>
             </div>
             <div>
               <p>Weak Against</p>
-              <span>
+              <div>
                 <Badge bg="danger" text="light">
                   Warning
                 </Badge>
-              </span>{" "}
-              <span>
+              </div>
+              <div>
                 <Badge bg="success" text="light">
                   Warning
                 </Badge>
-              </span>{" "}
-              <span>
+              </div>
+              <div>
                 <Badge bg="primary" text="light">
                   Warning
                 </Badge>
-              </span>{" "}
-              <span>
+              </div>
+              <div>
                 <Badge bg="success" text="light">
                   Warning
                 </Badge>
-              </span>{" "}
-              <span>
+              </div>
+              <div>
                 <Badge bg="success" text="light">
                   Warning
                 </Badge>
-              </span>
+              </div>
             </div>
           </div>
         </Modal.Body>
@@ -120,14 +125,4 @@ const PokemonThumb = ({ id, image, name, type, _callback , data}) => {
   );
 };
 
-export default PokemonThumb;
-
-// <p>
-//                 Spits fire that is hot enough to melt boulders. Known to cause
-//                 forest fires unintentionally. When expelling a blast of super
-//                 hot fire, the red flame at the tip of its tail burns more
-//                 intensely. If CHARIZARD be­comes furious, the flame at the tip
-//                 of its tail flares up in a whitish-blue color. Breathing
-//                 intense, hot flames, it can melt almost any­ thing. Its breath
-//                 inflicts terrible pain on enemies . . . read more
-//               </p>
+export default PokemonCard;

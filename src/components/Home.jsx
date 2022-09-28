@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import PokemonThumb from "./PokemonThumb";
+import PokemonCard from "./PokemonCard";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Navbar from "./Navbar";
@@ -177,7 +177,7 @@ const Home = () => {
                 })
                 .map((pokemonStats, index) => {
                   return (
-                    <PokemonThumb
+                    <PokemonCard
                       key={index}
                       id={pokemonStats.id}
                       image={
