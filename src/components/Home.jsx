@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import PokemonThumb from "./PokemonThumb";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
-import Modal from "react-bootstrap/Modal";
 import Navbar from "./Navbar";
 const Home = () => {
   const [allPokemons, setAllPokemons] = useState([]);
@@ -30,7 +29,6 @@ const Home = () => {
   const [MalePok, setMalePok] = useState([]);
   const [FemalePok, setFemalePok] = useState([]);
   const [genderLessPok, setgenderLessPok] = useState([]);
-  const [show, setShow] = useState(false);
   useEffect(() => {
     setUsers(userData);
     setGender(genderData);
@@ -113,7 +111,7 @@ const Home = () => {
                 onChange={(e) => setinputName(e.target.value)}
               />
               <InputGroup.Text id="basic-addon">
-                <span class="material-symbols-outlined">search</span>
+                <span className="material-symbols-outlined">search</span>
               </InputGroup.Text>
             </InputGroup>
             <InputGroup className="mb-3">
@@ -187,7 +185,7 @@ const Home = () => {
                       }
                       name={pokemonStats.name}
                       type={pokemonStats.types[0].type.name}
-                      onClick={() => setShow(true)}
+                      data={pokemonStats}
                     />
                   );
                 })}
