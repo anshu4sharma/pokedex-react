@@ -18,6 +18,8 @@ body {
 }
 label {
   display: flex;
+  position: absolute;
+  bottom: 2rem;
 }
 .input-group {
   max-height: 2rem;
@@ -29,16 +31,19 @@ label {
 }
 
 .input-group-text {
-  background-color:#c9dde2 ;
+  background-color: #c9dde2;
   cursor: pointer;
 }
 
 .form-check {
   display: flex;
-  margin-top: 0.5rem;
+  margin-top: 1rem;
   cursor: pointer;
   user-select: none;
   position: relative;
+}
+.form-check label{
+bottom: 0;
 }
 .form-control,
 .form-control span {
@@ -82,13 +87,10 @@ code {
   background-color: #e0f1fd;
 }
 
-.app-contaner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  padding: 3rem 0.5rem;
+.app-container {
+  padding: 3rem 0;
+  display: grid;
+  place-content: center;
 }
 .pokemon-container {
   display: flex;

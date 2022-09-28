@@ -32,7 +32,7 @@ const Home = () => {
       user.name === name ? { ...user, isChecked: checked } : user
     );
     setUsers(tempUser);
-    setIsChecked(!isChecked)
+    setIsChecked(!isChecked);
   };
   const handlegenderChange = (e) => {
     const { name, checked } = e.target;
@@ -40,7 +40,7 @@ const Home = () => {
       gen.name === name ? { ...gen, isChecked: checked } : gen
     );
     setGender(tempUser);
-    setIsGenChecked(!isGenChecked)
+    setIsGenChecked(!isGenChecked);
   };
 
   // Pokemon Data
@@ -69,10 +69,11 @@ const Home = () => {
 
   console.log(gender[0]?.isChecked);
   return (
-    <div className="app-contaner ">
+    <div className="app-container">
       <div className="search-form">
         <Form>
           <InputGroup className="mb-3">
+            <label>Search by</label>
             <Form.Control
               placeholder="Name or Number"
               aria-label="Small"
@@ -81,17 +82,17 @@ const Home = () => {
               className="inputValues"
               onChange={(e) => setinputName(e.target.value)}
             />
-            <InputGroup.Text id="basic-addon">@</InputGroup.Text>
+            <InputGroup.Text id="basic-addon"></InputGroup.Text>
           </InputGroup>
           <InputGroup className="mb-3">
-            <div className="form-control">
-              <span onClick={() => setIsChecked(!isChecked)}>
+            <label>Type</label>
+            <div onClick={() => setIsChecked(!isChecked)} className="form-control">
+              <span >
                 Normal + 5 More
               </span>
               {isChecked &&
                 users.map((user, index) => (
                   <div className="form-check" key={index}>
-                    <hr />
                     <input
                       type="checkbox"
                       className="form-check-input"
@@ -105,8 +106,9 @@ const Home = () => {
             </div>
           </InputGroup>
           <InputGroup className="mb-3">
-            <div className="form-control">
-              <span onClick={() => setIsGenChecked(!isGenChecked)}>
+            <label>Gender</label>
+            <div onClick={() => setIsGenChecked(!isGenChecked)} className="form-control">
+              <span >
                 Male +2 more
               </span>
               {isGenChecked &&
