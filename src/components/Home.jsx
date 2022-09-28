@@ -26,9 +26,9 @@ const Home = () => {
   const [gender, setGender] = useState([]);
   const [isChecked, setIsChecked] = useState(false);
   const [isGenChecked, setIsGenChecked] = useState(false);
-  const [MalePok, setMalePok] = useState([]);
-  const [FemalePok, setFemalePok] = useState([]);
-  const [genderLessPok, setgenderLessPok] = useState([]);
+  // const [MalePok, setMalePok] = useState([]);
+  // const [FemalePok, setFemalePok] = useState([]);
+  // const [genderLessPok, setgenderLessPok] = useState([]);
   useEffect(() => {
     setUsers(userData);
     setGender(genderData);
@@ -71,27 +71,27 @@ const Home = () => {
     createPokemonObject(data.results);
   };
 
-  const fetchGender = () => {
-    fetch("https://pokeapi.co/api/v2/gender/1")
-      .then((r) => r.json())
-      .then((data) => {
-        setMalePok(data);
-      });
-    fetch("https://pokeapi.co/api/v2/gender/2")
-      .then((r) => r.json())
-      .then((data) => {
-        setFemalePok(data);
-      });
-    fetch("https://pokeapi.co/api/v2/gender/3")
-      .then((r) => r.json())
-      .then((data) => {
-        setgenderLessPok(data);
-      });
-  };
+  // const fetchGender = () => {
+  //   fetch("https://pokeapi.co/api/v2/gender/1")
+  //     .then((r) => r.json())
+  //     .then((data) => {
+  //       setMalePok(data);
+  //     });
+  //   fetch("https://pokeapi.co/api/v2/gender/2")
+  //     .then((r) => r.json())
+  //     .then((data) => {
+  //       setFemalePok(data);
+  //     });
+  //   fetch("https://pokeapi.co/api/v2/gender/3")
+  //     .then((r) => r.json())
+  //     .then((data) => {
+  //       setgenderLessPok(data);
+  //     });
+  // };
 
   useEffect(() => {
     getAllPokemons();
-    fetchGender();
+    // fetchGender();
   }, []);
 
   return (
