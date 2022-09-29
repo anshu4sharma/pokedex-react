@@ -26,6 +26,7 @@ const Home = () => {
   const [gender, setGender] = useState([]);
   const [isChecked, setIsChecked] = useState(false);
   const [isGenChecked, setIsGenChecked] = useState(false);
+  const [isuserTyping, setisuserTyping] = useState(false);
   // const [MalePok, setMalePok] = useState([]);
   // const [FemalePok, setFemalePok] = useState([]);
   // const [genderLessPok, setgenderLessPok] = useState([]);
@@ -123,7 +124,7 @@ const Home = () => {
                   onClick={fetchSinglePokemon}
                   id="submitbtn"
                   type="submit"
-                  disabled={inputName.length<=0}
+                  disabled={inputName.length <= 0}
                 >
                   <span className="material-symbols-outlined">search</span>
                 </button>
@@ -207,9 +208,11 @@ const Home = () => {
                   );
                 })}
           </div>
-          <button className="load-more" onClick={getAllPokemons}>
-            Load more
-          </button>
+         
+            <button className="load-more" onClick={getAllPokemons}>
+              Load more
+            </button>
+   
         </div>
       </div>
     </>
