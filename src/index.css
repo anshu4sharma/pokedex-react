@@ -61,6 +61,9 @@ label {
   user-select: none;
   background-color: #c9dde2;
 }
+.pok-type {
+  z-index: 1;
+}
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
@@ -303,8 +306,7 @@ h3 {
   }
   .modal-container-img {
     width: max-content;
-    min-width: 12rem;
-    /* width: 100%; */
+    min-width: 10rem;
   }
   .details-container {
     gap: 0;

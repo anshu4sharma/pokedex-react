@@ -100,7 +100,6 @@ const Home = () => {
     setUsers(userData);
     setGender(genderData);
   }, []);
-  console.log(allPokemons.length);
   return (
     <>
       <Navbar />
@@ -134,7 +133,7 @@ const Home = () => {
               <label>Type</label>
               <div
                 onClick={() => setIsChecked(!isChecked)}
-                className="form-control"
+                className="form-control pok-type"
               >
                 <span>Normal + 5 More</span>
                 {isChecked &&
@@ -185,7 +184,6 @@ const Home = () => {
             {allPokemons.length > 0 &&
               allPokemons
                 .filter((data) => {
-                  console.log(data);
                   if (
                     data.name.toLowerCase().includes(inputName.toLowerCase()) ||
                     data.id == inputName
@@ -208,11 +206,10 @@ const Home = () => {
                   );
                 })}
           </div>
-         
-            <button className="load-more" onClick={getAllPokemons}>
-              Load more
-            </button>
-   
+
+          <button className="load-more" onClick={getAllPokemons}>
+            Load more
+          </button>
         </div>
       </div>
     </>

@@ -15,7 +15,7 @@ const PokemonModal = ({ data, show, setShow, id, type, name, image }) => {
         <Modal.Body>
           <div className="container pokemon">
             <div onClick={() => setShow(false)} className={modalStyle}>
-              <img src={image} alt={name} />
+              <img loading="lazy" src={image} alt={name} />
             </div>
             <div className="details-container">
               <div className="pokemon-detail">
@@ -24,7 +24,7 @@ const PokemonModal = ({ data, show, setShow, id, type, name, image }) => {
                 <div className="vr"></div>
                 <span
                   onClick={() => setShow(false)}
-                  class="material-symbols-outlined"
+                  className="material-symbols-outlined"
                 >
                   cancel
                 </span>
