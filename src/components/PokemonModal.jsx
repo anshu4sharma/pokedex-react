@@ -1,6 +1,7 @@
 import React from "react";
 import Modal from "react-bootstrap/Modal";
 import Badge from "react-bootstrap/Badge";
+import PokemonStats from "./PokemonStats";
 const PokemonModal = ({ data, show, setShow, id, type, name, image }) => {
   const modalStyle = type + " modal-container-img";
   return (
@@ -61,8 +62,7 @@ const PokemonModal = ({ data, show, setShow, id, type, name, image }) => {
             <div>
               <p>Abilities</p>
               <div>
-                <h6>{data.abilities[0]?.ability?.name}</h6>
-                <h6>{data.abilities[1]?.ability?.name}</h6>
+                <span>{data.abilities[0]?.ability?.name} , {data.abilities[1]?.ability?.name}</span>
               </div>
             </div>
             <div>
@@ -79,7 +79,8 @@ const PokemonModal = ({ data, show, setShow, id, type, name, image }) => {
                 </Badge>
               </div>
             </div>
-            <div>
+            {/* To do  data is not avail. currently */}
+            {/* <div>
               <p>Weak Against</p>
               <div>
                 <Badge bg="danger" text="light">
@@ -106,8 +107,10 @@ const PokemonModal = ({ data, show, setShow, id, type, name, image }) => {
                   Warning
                 </Badge>
               </div>
-            </div>
+            </div> */}
           </div>
+            <PokemonStats stats={data.stats} />
+
         </Modal.Body>
       </Modal>
     </>

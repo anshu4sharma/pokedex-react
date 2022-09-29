@@ -237,6 +237,37 @@ h3 {
 .pokemon-detail-header {
   display: none;
 }
+.progress {
+  max-width: 214px;
+  background-color: #93B2B2;
+  border-radius: 0;
+}
+.progress-bar{
+  background-color: #2E3156;
+}
+.progressbar-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.progressbar-col >div {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  place-content: center;
+  align-items: center;
+  justify-content: center;
+}
+.Pokemon-stats {
+  margin-top: 1rem;
+  gap: 1rem;
+  padding: 1.5rem;
+  background-color: #B0D2D2;
+  border-radius: 8px;
+  display: grid;
+  width: 54rem;
+}
+.progress{
+  margin-bottom: 1rem;
+}
 @media screen and (max-width: 1280px) {
   .all-container {
     display: grid;
@@ -306,6 +337,7 @@ h3 {
   }
   .modal-container-img {
     width: max-content;
+    max-height: 16rem;
     min-width: 10rem;
   }
   .details-container {
@@ -318,7 +350,17 @@ h3 {
   }
   .pokemon-states {
     margin-top: 1rem;
+    width: 100%;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
   }
+  .progressbar-col {
+    display: grid;
+    grid-template-columns:  1fr;
+  }
+  .Pokemon-stats{
+    padding: 2rem;
+    width: 100%;
+  }
+  
 }
