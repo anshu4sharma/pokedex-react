@@ -26,14 +26,10 @@ const Home = () => {
   const [gender, setGender] = useState([]);
   const [isChecked, setIsChecked] = useState(false);
   const [isGenChecked, setIsGenChecked] = useState(false);
-  const [isuserTyping, setisuserTyping] = useState(false);
-  // const [MalePok, setMalePok] = useState([]);
-  // const [FemalePok, setFemalePok] = useState([]);
-  // const [genderLessPok, setgenderLessPok] = useState([]);
   const handleChange = (e) => {
     const { name, checked } = e.target;
-    let tempUser = users.map((user) =>
-      user.name === name ? { ...user, isChecked: checked } : user
+    let tempUser = users.map((usr) =>
+      usr.name === name ? { ...usr, isChecked: checked } : usr
     );
     setUsers(tempUser);
     setIsChecked(!isChecked);
@@ -73,33 +69,15 @@ const Home = () => {
     setAllPokemons([data]);
   };
 
-  // const fetchGender = () => {
-  //   fetch("https://pokeapi.co/api/v2/gender/1")
-  //     .then((r) => r.json())
-  //     .then((data) => {
-  //       setMalePok(data);
-  //     });
-  //   fetch("https://pokeapi.co/api/v2/gender/2")
-  //     .then((r) => r.json())
-  //     .then((data) => {
-  //       setFemalePok(data);
-  //     });
-  //   fetch("https://pokeapi.co/api/v2/gender/3")
-  //     .then((r) => r.json())
-  //     .then((data) => {
-  //       setgenderLessPok(data);
-  //     });
-  // };
-
   useEffect(() => {
     getAllPokemons();
-    // fetchGender();
   }, []);
 
   useEffect(() => {
     setUsers(userData);
     setGender(genderData);
   }, []);
+  
   return (
     <>
       <Navbar />
@@ -137,17 +115,17 @@ const Home = () => {
               >
                 <span>Normal + 5 More</span>
                 {isChecked &&
-                  users.map((user, index) => (
+                  users.map((usr, index) => (
                     <div className="form-check" key={index}>
                       <input
                         type="checkbox"
                         className="form-check-input"
-                        name={user.name}
-                        checked={user?.isChecked || false}
+                        name={usr.name}
+                        checked={usr?.isChecked || false}
                         onChange={handleChange}
                       />
                       <label className="form-check-label ms-2">
-                        {user.name}
+                        {usr.name}
                       </label>
                     </div>
                   ))}

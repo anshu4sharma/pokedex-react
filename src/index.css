@@ -316,6 +316,10 @@ h3 {
 }
 
 @media screen and (max-width: 600px) {
+  .btn-close{
+    position: relative;
+    bottom: 0.4rem;
+  }
   .all-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -339,6 +343,8 @@ h3 {
     width: max-content;
     max-height: 16rem;
     min-width: 10rem;
+    position: relative;
+    right: 1rem;
   }
   .details-container {
     gap: 0;

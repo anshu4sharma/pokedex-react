@@ -2,7 +2,6 @@ import React from "react";
 import ProgressBar from "react-bootstrap/ProgressBar";
 const PokemonStats = ({ stats }) => {
   const now = 60;
-  console.log(stats);
   return (
     <>
       <div className="container Pokemon-stats">
