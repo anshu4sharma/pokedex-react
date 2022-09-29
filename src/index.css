@@ -239,17 +239,17 @@ h3 {
 }
 .progress {
   max-width: 214px;
-  background-color: #93B2B2;
+  background-color: #93b2b2;
   border-radius: 0;
 }
-.progress-bar{
-  background-color: #2E3156;
+.progress-bar {
+  background-color: #2e3156;
 }
 .progressbar-col {
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
-.progressbar-col >div {
+.progressbar-col > div {
   display: grid;
   grid-template-columns: 1fr 2fr;
   place-content: center;
@@ -260,12 +260,12 @@ h3 {
   margin-top: 1rem;
   gap: 1rem;
   padding: 1.5rem;
-  background-color: #B0D2D2;
+  background-color: #b0d2d2;
   border-radius: 8px;
   display: grid;
   width: 54rem;
 }
-.progress{
+.progress {
   margin-bottom: 1rem;
 }
 @media screen and (max-width: 1280px) {
@@ -356,11 +356,13 @@ h3 {
   }
   .progressbar-col {
     display: grid;
-    grid-template-columns:  1fr;
+    grid-template-columns: 1fr;
   }
-  .Pokemon-stats{
+  .Pokemon-stats {
     padding: 2rem;
     width: 100%;
   }
-  
+  .pokemon-stats > div {
+    margin-bottom: 1rem;
+  }
 }
