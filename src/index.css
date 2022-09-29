@@ -9,6 +9,10 @@ p {
 body {
   background-color: #deeded;
 }
+#submitbtn {
+  border: none;
+  background-color: transparent;
+}
 .navbar-brand {
   color: #2e3156;
   font-weight: bold;

@@ -6,7 +6,7 @@ import Navbar from "./Navbar";
 const Home = () => {
   const [allPokemons, setAllPokemons] = useState([]);
   const [loadMore, setLoadMore] = useState(
-    "https://pokeapi.co/api/v2/pokemon?offset=0&limit=20"
+    "https://pokeapi.co/api/v2/pokemon?offset=0&limit=40"
   );
   const [inputName, setinputName] = useState("");
   const userData = [
@@ -29,11 +29,6 @@ const Home = () => {
   // const [MalePok, setMalePok] = useState([]);
   // const [FemalePok, setFemalePok] = useState([]);
   // const [genderLessPok, setgenderLessPok] = useState([]);
-  useEffect(() => {
-    setUsers(userData);
-    setGender(genderData);
-  }, []);
-
   const handleChange = (e) => {
     const { name, checked } = e.target;
     let tempUser = users.map((user) =>
@@ -71,6 +66,12 @@ const Home = () => {
     createPokemonObject(data.results);
   };
 
+  const fetchSinglePokemon = async () => {
+    const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${inputName}`);
+    const data = await res.json();
+    setAllPokemons([data]);
+  };
+
   // const fetchGender = () => {
   //   fetch("https://pokeapi.co/api/v2/gender/1")
   //     .then((r) => r.json())
@@ -94,12 +95,17 @@ const Home = () => {
     // fetchGender();
   }, []);
 
+  useEffect(() => {
+    setUsers(userData);
+    setGender(genderData);
+  }, []);
+  console.log(allPokemons.length);
   return (
     <>
       <Navbar />
       <div className="app-container">
         <div className="search-form">
-          <Form>
+          <Form onSubmit={(e) => e.preventDefault()}>
             <InputGroup className="mb-3">
               <label>Search by</label>
               <Form.Control
@@ -108,10 +114,19 @@ const Home = () => {
                 aria-describedby="inputGroup-sizing-sm"
                 value={inputName}
                 className="inputValues"
-                onChange={(e) => setinputName(e.target.value)}
+                onChange={(e) => {
+                  setinputName(e.target.value);
+                }}
               />
               <InputGroup.Text id="basic-addon">
-                <span className="material-symbols-outlined">search</span>
+                <button
+                  onClick={fetchSinglePokemon}
+                  id="submitbtn"
+                  type="submit"
+                  disabled={inputName.length<=0}
+                >
+                  <span className="material-symbols-outlined">search</span>
+                </button>
               </InputGroup.Text>
             </InputGroup>
             <InputGroup className="mb-3">
@@ -169,8 +184,10 @@ const Home = () => {
             {allPokemons.length > 0 &&
               allPokemons
                 .filter((data) => {
+                  console.log(data);
                   if (
-                    data.name.toLowerCase().includes(inputName.toLowerCase())
+                    data.name.toLowerCase().includes(inputName.toLowerCase()) ||
+                    data.id == inputName
                   ) {
                     return data;
                   }
