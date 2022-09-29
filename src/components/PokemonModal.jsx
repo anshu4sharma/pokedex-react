@@ -62,21 +62,23 @@ const PokemonModal = ({ data, show, setShow, id, type, name, image }) => {
             <div>
               <p>Abilities</p>
               <div>
-                <span>{data.abilities[0]?.ability?.name} , {data.abilities[1]?.ability?.name}</span>
+                <span>
+                  {data.abilities[0]?.ability?.name} ,{" "}
+                  {data.abilities[1]?.ability?.name}
+                </span>
               </div>
             </div>
             <div>
               <p>Types</p>
               <div>
-                <Badge bg="danger" text="light">
-                  {data.types[0].type.name}
-                </Badge>
-              </div>
-
-              <div>
-                <Badge bg="primary" text="light">
-                  {data.types[1]?.type?.name}
-                </Badge>
+                <span style={{"display":"inline-flex","gap":"0.5rem"}}>
+                  <Badge bg="danger" text="light">
+                    {data.types[0].type.name}
+                  </Badge>
+                  <Badge bg="primary" text="light">
+                    {data.types[1]?.type?.name}
+                  </Badge>
+                </span>
               </div>
             </div>
             {/* To do  data is not avail. currently */}
@@ -109,8 +111,7 @@ const PokemonModal = ({ data, show, setShow, id, type, name, image }) => {
               </div>
             </div> */}
           </div>
-            <PokemonStats stats={data.stats} />
-
+          <PokemonStats stats={data.stats} />
         </Modal.Body>
       </Modal>
     </>
