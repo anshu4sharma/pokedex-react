@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import PokemonCard from "./PokemonCard";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
+import ProductItem from "./ProductItem";
 import Navbar from "./Navbar";
 const Home = () => {
   const [allPokemons, setAllPokemons] = useState([]);
@@ -9,40 +10,29 @@ const Home = () => {
     "https://pokeapi.co/api/v2/pokemon?offset=0&limit=40"
   );
   const [inputName, setinputName] = useState("");
-  const userData = [
-    { name: "Normal" },
-    { name: "Fighting" },
-    { name: "Flying" },
-    { name: "Poison" },
-    { name: "Ground" },
-    { name: "Rock" },
-  ];
-  const genderData = [
-    { name: "Male" },
-    { name: "Female" },
-    { name: "Genderless" },
-  ];
-  const [users, setUsers] = useState([]);
-  const [gender, setGender] = useState([]);
   const [isChecked, setIsChecked] = useState(false);
   const [isGenChecked, setIsGenChecked] = useState(false);
-  const handleChange = (e) => {
-    const { name, checked } = e.target;
-    let tempUser = users.map((usr) =>
-      usr.name === name ? { ...usr, isChecked: checked } : usr
-    );
-    setUsers(tempUser);
-    setIsChecked(!isChecked);
-  };
-  const handlegenderChange = (e) => {
-    const { name, checked } = e.target;
-    let tempUser = gender.map((gen) =>
-      gen.name === name ? { ...gen, isChecked: checked } : gen
-    );
-    setGender(tempUser);
-    setIsGenChecked(!isGenChecked);
-  };
+  const [products, setProducts] = useState([
+    { slug: "Normal", name: "Normal", checked: false },
+    { slug: "Fighting", name: "Fighting", checked: false },
+    { slug: "Flying", name: "Flying", checked: false },
+    { slug: "Poison", name: "Poison", checked: false },
+    { slug: "Ground", name: "Ground", checked: false },
+    { slug: "Rock", name: "Rock", checked: false },
+  ]);
 
+  const handleChange = (slug) => {
+    const copyProducts = [...products];
+    const modifiedProducts = copyProducts.map((product) => {
+      if (slug === product.slug) {
+        product.checked = !product.checked;
+      }
+
+      return product;
+    });
+    setProducts(modifiedProducts);
+    filterByType();
+  };
   // Pokemon Data
   const getAllPokemons = async () => {
     const res = await fetch(loadMore);
@@ -73,11 +63,28 @@ const Home = () => {
     getAllPokemons();
   }, []);
 
-  useEffect(() => {
-    setUsers(userData);
-    setGender(genderData);
-  }, []);
-  
+  const filterByType = () => {
+    const GrassType = allPokemons.filter((data) => {
+      if (products[0].checked && data.types[0].type.name === "normal") {
+        return data;
+      } else if (
+        products[1].checked &&
+        data.types[0].type.name === "fighting"
+      ) {
+        return data;
+      } else if (products[2].checked && data.types[0].type.name === "flying") {
+        return data;
+      } else if (products[3].checked && data.types[0].type.name === "poison") {
+        return data;
+      } else if (products[4].checked && data.types[0].type.name === "ground") {
+        return data;
+      } else if (products[4].checked && data.types[0].type.name === "rock") {
+        return data;
+      }
+    });
+    setAllPokemons(GrassType);
+  };
+
   return (
     <>
       <Navbar />
@@ -113,22 +120,17 @@ const Home = () => {
                 onClick={() => setIsChecked(!isChecked)}
                 className="form-control pok-type"
               >
-                <span>Normal + 5 More</span>
-                {isChecked &&
-                  users.map((usr, index) => (
-                    <div className="form-check" key={index}>
-                      <input
-                        type="checkbox"
-                        className="form-check-input"
-                        name={usr.name}
-                        checked={usr?.isChecked || false}
-                        onChange={handleChange}
-                      />
-                      <label className="form-check-label ms-2">
-                        {usr.name}
-                      </label>
-                    </div>
-                  ))}
+                {isChecked ? (
+                  products.map((product, idx) => (
+                    <ProductItem
+                      key={idx}
+                      product={product}
+                      handleChange={handleChange}
+                    />
+                  ))
+                ) : (
+                  <span>Normal + 5 More</span>
+                )}
               </div>
             </InputGroup>
             <InputGroup className="mb-3">
@@ -138,21 +140,6 @@ const Home = () => {
                 className="form-control"
               >
                 <span>Male +2 more</span>
-                {isGenChecked &&
-                  gender.map((gen, index) => (
-                    <div className="form-check" key={index}>
-                      <input
-                        type="checkbox"
-                        className="form-check-input"
-                        name={gen.name}
-                        checked={gen?.isChecked || false}
-                        onChange={handlegenderChange}
-                      />
-                      <label className="form-check-label ms-2">
-                        {gen.name}
-                      </label>
-                    </div>
-                  ))}
               </div>
             </InputGroup>
           </Form>

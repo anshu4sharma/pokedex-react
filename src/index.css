@@ -45,12 +45,12 @@ label {
   cursor: pointer;
 }
 
-.form-check {
+.custom-control-label {
   display: flex;
-  margin-top: 1rem;
   cursor: pointer;
   user-select: none;
   position: relative;
+  bottom: 0;
 }
 .form-check label {
   bottom: 0;
@@ -61,6 +61,11 @@ label {
   user-select: none;
   background-color: #c9dde2;
 }
+.custom-checkbox {
+  display: flex;
+  gap: 1rem;
+}
+
 .pok-type {
   z-index: 1;
 }
@@ -316,7 +321,7 @@ h3 {
 }
 
 @media screen and (max-width: 600px) {
-  .btn-close{
+  .btn-close {
     position: relative;
     bottom: 0.4rem;
   }
