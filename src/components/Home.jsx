@@ -7,7 +7,7 @@ import Navbar from "./Navbar";
 const Home = () => {
   const [allPokemons, setAllPokemons] = useState([]);
   const [loadMore, setLoadMore] = useState(
-    "https://pokeapi.co/api/v2/pokemon?offset=0&limit=40"
+    "https://pokeapi.co/api/v2/pokemon?offset=0&limit=140"
   );
   const [inputName, setinputName] = useState("");
   const [isChecked, setIsChecked] = useState(false);
