@@ -63,8 +63,8 @@ const PokemonModal = ({ data, show, setShow, id, type, name, image }) => {
               <p>Abilities</p>
               <div>
                 <span>
-                  {data.abilities[0]?.ability?.name} ,{" "}
-                  {data.abilities[1]?.ability?.name}
+                  {data.abilities[0]?.ability?.name} ,
+                  {data.abilities[1].ability?.name}
                 </span>
               </div>
             </div>

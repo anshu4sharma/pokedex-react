@@ -46,7 +46,6 @@ const Home = () => {
           `https://pokeapi.co/api/v2/pokemon/${pokemon.name}`
         );
         const data = await res.json();
-        await allPokemons.sort((a, b) => a.id - b.id);
         setAllPokemons((currentList) => [...currentList, data]);
       });
     }
