@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import PokemonModal from "./PokemonModal";
 
-const PokemonCard = ({ id, image, name, type, _callback, data }) => {
+const PokemonCard = ({ id, name, type, data }) => {
   const [show, setShow] = useState(false);
   const style = type + " thumb-container";
+  let image = `https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${id}.svg`
+
   return (
     <>
       {show ? (

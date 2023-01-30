@@ -19,7 +19,7 @@ body {
 }
 .search-form form {
   display: grid;
-  grid-template-columns: 3fr 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 0.5rem;
 }
 label {
@@ -124,6 +124,7 @@ code {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 100%;
 }
 .all-container {
   display: grid;
@@ -320,6 +321,11 @@ h3 {
   }
 }
 
+@media screen and (min-width: 600px) {
+  .app-container {
+    min-width: 1080px;
+  }
+}
 @media screen and (max-width: 600px) {
   .btn-close {
     position: relative;
